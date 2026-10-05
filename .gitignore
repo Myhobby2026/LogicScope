@@ -1,0 +1,17 @@
+# .NET / Visual Studio
+**/bin/
+**/obj/
+.vs/
+TestResults/
+*.suo
+*.user
+
+# PlatformIO
+firmware/.pio/
+.pio/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
