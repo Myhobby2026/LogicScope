@@ -96,20 +96,20 @@ public static class DigitalMeasurements
         }
 
         var period = MeanDifference(rising);
-        var frequency = period is > 0 ? 1d / period : null;
+        double? frequency = period is > 0 ? 1d / period.Value : null;
         var observedDuration = samples.Length / (double)rate;
         if (highStart >= 0)
         {
             var windowEnd = (window.StartSample + samples.Length) / (double)rate;
             highDuration += Math.Max(0, windowEnd - highStart);
         }
-        var duty = observedDuration > 0 ? highDuration / observedDuration : null;
-        var meanHigh = completeHighPulses > 0
+        double? duty = observedDuration > 0 ? highDuration / observedDuration : null;
+        double? meanHigh = completeHighPulses > 0
             ? completeHighDuration / completeHighPulses
             : null;
-        var minPulse = pulseWidths.Count > 0 ? pulseWidths.Min() : null;
-        var maxPulse = pulseWidths.Count > 0 ? pulseWidths.Max() : null;
-        var riseTime = risingCount > 0 ? 0.8d / rate : null;
+        double? minPulse = pulseWidths.Count > 0 ? pulseWidths.Min() : null;
+        double? maxPulse = pulseWidths.Count > 0 ? pulseWidths.Max() : null;
+        double? riseTime = risingCount > 0 ? 0.8d / rate : null;
 
         return new ChannelMeasurement(channel, frequency, period, meanHigh, duty,
             minPulse, maxPulse, riseTime, risingCount, fallingCount);
