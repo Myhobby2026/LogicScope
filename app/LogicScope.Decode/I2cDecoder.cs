@@ -57,7 +57,7 @@ public sealed class I2cDecoder(int sdaChannel, int sclChannel) : ProtocolDecoder
                 {
                     var ack = !sda;
                     var label = firstByte
-                        ? $"ADDR 0x{value >> 1:X2} {(value & 1) == 0 ? 'W' : 'R'} {(ack ? "ACK" : "NACK")}"
+                        ? $"ADDR 0x{value >> 1:X2} {((value & 1) == 0 ? 'W' : 'R')} {(ack ? "ACK" : "NACK")}"
                         : $"0x{value:X2} {(ack ? "ACK" : "NACK")}";
                     yield return new DecoderResult(AbsoluteSample(window, byteStart),
                         AbsoluteSample(window, i), label,
